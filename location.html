@@ -4,11 +4,12 @@
   <title>Weather Application</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <script>
@@ -38,30 +39,97 @@
     function getdata()
     {
       var city =  $('.form-control').val();
-      console.log(city);
       var url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=a4c44b228e720ea728b757f3aa754c06"
+      
       $.getJSON(
         url, 
         function(data) {
-          console.log(data.coord);
-        }
-        );
-      $(".form-control").hide();
-      $("#button1").hide();
+          //location starts
+          var loc = document.getElementById("location");
+          var name = data.name;
+          var country = data.sys.country;
+          var location = document.createTextNode(name + "," +country);
+          console.log(location);
+          loc.appendChild(location);
+         //location ends
+
+         //temperature starts
+         var temp = document.getElementById("temperature");
+         
+         var tempk = data.main.temp; //Extracts the temperature in kelvin
+         var tempk_fixed = tempk.toFixed(1); //Takes up only Decimal Place 
+         var tempc = tempk - 273.15; //kelvin to celcius conversion
+         var tempc_fixed = tempc.toFixed(1);
+         
+         var temp_Kelvin = document.createTextNode(tempk + decodeURI('%C2%B0') +  "K"); //creates a text node
+         var temp_Celcius = document.createTextNode(tempc_fixed + decodeURI('%C2%B0') +  "C");
+         
+         temp.appendChild(temp_Celcius); //append to the desired location/div
+         //temperature ends
+
+         //description starts
+         var desc = document.getElementById("description");
+         var description = data.weather[0].description;
+         var description_final = document.createTextNode(description);
+         desc.appendChild(description_final);
+         //description ends
+
+         //humidity starts
+         var hum = document.getElementById("humidity");
+         var humidity = data.main.humidity;
+         var humidity_final = document.createTextNode("Humidity : " + humidity + "%");
+         hum.appendChild(humidity_final);
+         //humidity ends
+
+         //wind starts
+         var wind= document.getElementById("wind");
+         var wind_speed = data.wind.speed;
+         var wind_speed_final = document.createTextNode("Wind : " + wind_speed + "m/sec");
+         wind.appendChild(wind_speed_final);
+         //wind ends
+
+       }
+       );
+
+      document.getElementById("form").setAttribute("style", "display:none");
+      document.getElementById("location").setAttribute("style", "display:block");
+      document.getElementById("temperature").setAttribute("style", "display:block");
+      document.getElementById("description").setAttribute("style", "display:block");
+      document.getElementById("humidity").setAttribute("style", "display:block");
+      document.getElementById("wind").setAttribute("style", "display:block");
     }
 
 
   </script>
 
   <body>
-    <h1 align="center" id="header1"><u>Weather App</u></h1>
+    <h1 align="center" id="header1" ><u>Weather App</u></h1>
+
+    <div id = "form">
       <div class="form-group">
         <div class="col-xs-4">
-          <input class="form-control" id="ex3" type="text">
+          <input class="form-control" id="ex3" type="text" placeholder="Enter the Place">
         </div>
       </div>
       <button type="submit" class="btn btn-default" id="button1" onclick="getdata()">Submit</button>
+    </div>
 
+    <div id = "location">
+    </div>
+
+    <div id = "temperature">      
+    </div>
+
+    <div id = "description">      
+    </div>
+
+    <div id="humidity">
+      <img src="humidity.png" height="60px" width="60px">
+    </div>
+
+    <div id="wind">
+      <img src="wind.png" height="60px" width="60px">
+    </div>
 
   </body>
 

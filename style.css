@@ -1,10 +1,110 @@
+body
+{
+	background: url("giphy.gif") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
 #header1
 {
 	font-size: 100px;
 	font-color: #ffffff;
-	font-style: "Indie flower";}
+	position: relative;
+	top: 5%;
+	color:white;
+	font-family: Indie Flower;
+}
 
+#form
+{
+	position: relative;
+	left: 30%;
+	top: 10%;
+	right: 30%;
+}
 
 #button1
 {
 }
+
+#location
+{
+	position: relative;
+	top: 10%;
+	left: 32%;
+	right: 32%;
+	height: 100px;
+	width: 36%;
+	padding: 15px;
+	font-size: 4vw;
+	display: none;
+	text-align: center;
+	font-family: Dosis;
+	background-color: white;
+	border-radius: 10px;
+	opacity: 0.7;
+}
+
+#temperature
+{
+	position: relative;
+	top: 15%;
+	left: 11.5%;
+	height: 100px;
+	width: 36%;
+	padding: 15px;
+	font-size: 4vw;
+	display: none;
+	text-align: center;
+	font-family: Dosis;
+	color:white;
+}
+
+#description
+{
+	position: relative;
+	left: 52.5%;
+	height: 100px;
+	width: 36%;
+	padding: 15px;
+	font-size: 4vw;
+	display: none;
+	text-align: center;
+	font-family: Dosis;
+	color: white;
+}
+
+#humidity
+{
+	position: relative;
+	top: 5%;
+	left: 11.5%;
+	height: 100px;
+	width: 36%;
+	padding: 15px;
+	font-size: 4vw;
+	display: none;
+	text-align: center;
+	font-family: Dosis;
+	color: white;
+}
+
+#wind
+{
+	position: relative;
+	left: 52.5%;
+	height: 100px;
+	width: 36%;
+	padding: 15px;
+	font-size: 4vw;
+	display: none;
+	text-align: center;
+	top: -10%;
+	font-family: Dosis;
+	color: white;
+}
+
+
